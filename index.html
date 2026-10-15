@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>圆圆圈圈 · 梦哪画哪</title>
+<link rel="stylesheet" href="./styles.css?v=8"/>
+</head>
+<body>
+<main class="app-shell">
+<section class="screen home-world" data-screen="home">
+<header class="world-header">
+<button class="brand" data-go="home">
+<b>圆圆圈圈</b>
+<span>梦哪画哪</span>
+</button>
+<nav>
+<button data-go="plaza">广场</button>
+<button data-go="explore">灵感</button>
+</nav>
+<button class="lodge-link" data-go="lodge">⌂ 我的小屋</button>
+</header>
+<div class="world-sky" aria-hidden="true">
+<div class="cloud cloud-a"></div>
+<div class="cloud cloud-b"></div>
+<div class="sun-circle">
+</div>
+<i class="float-dot dot-a">
+</i>
+<i class="float-dot dot-b">
+</i>
+<div class="water-glow">
+</div>
+</div>
+<div class="circle-companion" aria-label="圈圈小精灵">
+<span>
+</span>
+<i>
+</i>
+</div>
+<div class="mode-dock">
+<button class="mode mode-free" data-go="studio">
+<strong>自由想象</strong>
+<small>从一个圆圈开始</small>
+<b>→</b>
+</button>
+<button class="mode mode-explore" data-go="explore">
+<strong>想象探索</strong>
+<small>在无限画布里继续生长</small>
+<b>→</b>
+</button>
+<button class="mode mode-relay" data-go="relay">
+<strong>想象接力</strong>
+<small>邀请朋友，一笔一笔接下去</small>
+<b>→</b>
+</button>
+</div>
+<nav class="quiet-links">
+<button data-go="gallery">我的作品</button>
+<button data-go="lodge">照片墙</button>
+<button data-go="lodge">创作记录</button>
+<button data-go="plaza">圆圈广场</button>
+</nav>
+</section>
+<section class="screen" data-screen="studio" hidden>
+<header class="screen-header">
+<button class="icon-button" data-go="home">←</button>
+<div>
+<p class="eyebrow">自由想象</p>
+<h2 tabindex="-1">让圆圈去旅行</h2>
+</div>
+<button class="text-button" data-go="gallery">我的作品</button>
+</header>
+<div class="studio-layout">
+<aside class="tool-panel">
+<div>
+<p class="tool-label">颜色</p>
+<div class="swatches">
+<button class="swatch swatch-ink" data-color="#433059" aria-label="深紫色">
+</button>
+<button class="swatch swatch-pink" data-color="#ed75a9" aria-label="珊瑚粉">
+</button>
+<button class="swatch swatch-blue" data-color="#4e9ce2" aria-label="雾蓝色">
+</button>
+<button class="swatch swatch-mint" data-color="#49b99a" aria-label="薄荷绿">
+</button>
+<button class="swatch swatch-gold" data-color="#d69a32" aria-label="暖金色">
+</button>
+</div>
+</div>
+<div>
+<p class="tool-label">笔触</p>
+<div class="brush-grid"><button data-brush="pencil">铅笔</button><button data-brush="marker">马克笔</button><button data-brush="watercolor">水彩</button><button data-brush="spray">喷笔</button><button data-brush="glow">荧光笔</button><button data-brush="charcoal">炭笔</button></div>
+<p class="tool-label">粗细</p>
+<div class="size-buttons">
+<button data-size="4">细</button>
+<button data-size="8">中</button>
+<button data-size="16">粗</button>
+</div>
+</div>
+<div>
+<p class="tool-label">工具</p>
+<div class="tool-grid"><button data-tool="brush">画笔</button><button data-tool="eraser">橡皮</button><button data-tool="fill">填色</button><button data-tool="stamp">素材</button><button data-tool="text">文字</button><button data-tool="circle">圆圈</button></div>
+</div>
+<label class="tool-label" for="opacity">透明度 <input id="opacity" data-opacity type="range" min="0.1" max="1" step="0.1" value="1"/></label>
+<label class="tool-label" for="canvas-text">文字内容 <input id="canvas-text" data-text maxlength="24" value="梦"/></label>
+<div class="tool-actions">
+<button data-action="undo">↶ 撤销</button>
+<button data-action="redo">↷ 重做</button>
+<button data-action="snapshot">截图保存</button>
+<button data-action="clear">清空</button>
+<button data-action="reset">恢复起点</button>
+</div>
+</aside>
+<div class="canvas-frame">
+<canvas id="drawing-canvas" width="900" height="600">
+</canvas>
+<p>从中间的黑色圆圈开始。</p>
+</div>
+<button class="button primary save-button" data-action="save">保存这幅作品</button>
+</div>
+</section>
+<section class="screen" data-screen="gallery" hidden>
+<header class="screen-header">
+<button class="icon-button" data-go="home">←</button>
+<div>
+<p class="eyebrow">我的小屋</p>
+<h2 tabindex="-1">我的作品</h2>
+</div>
+<button class="text-button" data-go="studio">去创作</button>
+</header>
+<div id="gallery-content">
+</div>
+</section>
+<section class="screen placeholder-screen" data-screen="explore" hidden>
+<button class="icon-button" data-go="home">←</button>
+<p class="eyebrow">想象探索</p><h2>让圆圈继续生长</h2><p>在一张可延展的画布上继续画。画笔留下笔迹，移动可以去更远的地方。</p>
+<p class="companion-note">圈圈：没有主题也没关系，往任何方向画一笔吧。</p>
+<div class="explore-toolbar" aria-label="想象探索画板工具">
+<div class="segmented-tools"><button type="button" data-explore-tool="brush" aria-pressed="true">画笔</button><button type="button" data-explore-tool="circle" aria-pressed="false">圆圈</button><button type="button" data-explore-tool="move" aria-pressed="false">移动</button></div>
+<div class="mini-swatches" aria-label="画笔颜色"><button type="button" class="mini-swatch explore-pink" data-explore-color="#ff8ca7" aria-label="珊瑚粉" aria-pressed="true"></button><button type="button" class="mini-swatch explore-blue" data-explore-color="#7196f3" aria-label="晴空蓝" aria-pressed="false"></button><button type="button" class="mini-swatch explore-yellow" data-explore-color="#f6bd40" aria-label="金黄色" aria-pressed="false"></button><button type="button" class="mini-swatch explore-ink" data-explore-color="#433059" aria-label="深紫色" aria-pressed="false"></button></div>
+<div class="segmented-tools compact"><button type="button" data-explore-size="5" aria-pressed="false">细</button><button type="button" data-explore-size="10" aria-pressed="true">中</button><button type="button" data-explore-size="18" aria-pressed="false">粗</button></div>
+</div>
+<canvas id="explore-canvas" width="900" height="500" aria-label="想象探索无限画布" aria-describedby="explore-help"></canvas>
+<p class="sr-only" id="explore-help">选择画笔后按住并拖动即可绘画；选择移动后拖动可以移动画布；使用滚轮缩放。</p>
+<div class="button-row"><button class="button ghost" data-action="explore-zoom-out">缩小</button><button class="button ghost" data-action="explore-zoom-in">放大</button><button class="button primary" data-action="explore-snapshot">保存此刻</button></div>
+</section>
+<section class="screen placeholder-screen" data-screen="relay" hidden>
+<button class="icon-button" data-go="home">←</button>
+<p class="eyebrow">想象接力</p>
+<h2>接力创作房间</h2>
+<p>2–4 人按顺序共画一张画；每一轮完成后，可继续下一轮或结束。</p>
+<div id="relay-content" aria-live="polite"></div>
+<section class="relay-workspace" id="relay-workspace" hidden aria-label="接力共享画板">
+<div class="relay-toolbar" aria-label="接力画板工具">
+<div class="mini-swatches" aria-label="接力画笔颜色"><button type="button" class="mini-swatch explore-pink" data-relay-color="#ff8ca7" aria-label="珊瑚粉" aria-pressed="true"></button><button type="button" class="mini-swatch explore-blue" data-relay-color="#7196f3" aria-label="晴空蓝" aria-pressed="false"></button><button type="button" class="mini-swatch explore-yellow" data-relay-color="#f6bd40" aria-label="金黄色" aria-pressed="false"></button><button type="button" class="mini-swatch explore-ink" data-relay-color="#433059" aria-label="深紫色" aria-pressed="false"></button></div>
+<div class="segmented-tools compact"><button type="button" data-relay-size="5" aria-pressed="false">细</button><button type="button" data-relay-size="10" aria-pressed="true">中</button><button type="button" data-relay-size="18" aria-pressed="false">粗</button></div>
+<div class="segmented-tools"><button type="button" data-relay-tool="brush" aria-pressed="true">画笔</button><button type="button" data-relay-tool="eraser" aria-pressed="false">橡皮</button></div>
+</div>
+<canvas id="relay-canvas" width="900" height="500" aria-label="接力共享画板"></canvas>
+<p id="relay-canvas-message" class="relay-canvas-message"></p>
+</section>
+</section>
+<section class="screen placeholder-screen" data-screen="lodge" hidden>
+<button class="icon-button" data-go="home">←</button>
+<p class="eyebrow">我的小屋</p><h2>照片墙与创作记录</h2><div id="lodge-content"></div>
+</section>
+<section class="screen placeholder-screen" data-screen="plaza" hidden>
+<button class="icon-button" data-go="home">←</button>
+<div id="plaza-content"></div>
+</section>
+</main>
+<p class="toast" id="toast" aria-live="polite">
+</p>
+<dialog id="work-dialog">
+<div class="dialog-header">
+<h3 id="dialog-title">
+</h3>
+<button class="icon-button" data-action="close-dialog">×</button>
+</div>
+<img id="dialog-image" alt=""/>
+</dialog>
+<script type="module" src="./app.js?v=12">
+</script>
+</body>
+</html>
