@@ -122,32 +122,45 @@ dialog::backdrop { background: #2f244855; }
  }
 
 
-/* Confirmed home-world direction */
-body { background: #a8d5fb; }
- .app-shell { width: 100%; max-width: none; padding: 0; }
-.home-world { position: relative; overflow: hidden; min-height: 100vh; color:#173765; background:linear-gradient(#83bef2 0%,#b7dafa 45%,#ffe0df 100%); }
-.world-header{position:relative;z-index:3;display:flex;align-items:flex-start;justify-content:space-between;padding:28px clamp(28px,6vw,84px)}
-.world-header nav{display:flex;gap:28px}
-.world-header button,.quiet-links button{border:0;background:none;color:#fff;font-weight:800;font-size:1rem}
-.brand{display:grid;text-align:left}
-.brand b{font-size:clamp(2rem,4vw,3.6rem);letter-spacing:-.14em;line-height:.85;text-shadow:0 3px 14px #fff}
-.brand span{font-size:1.1rem;letter-spacing:.33em;margin-top:14px}
-.lodge-link{padding:10px 18px!important;border:1px solid #fff8!important;border-radius:999px!important}
-.world-sky{position:absolute;inset:0;pointer-events:none}
-.cloud{position:absolute;width:130px;height:28px;border-radius:999px;background:#fff5;filter:blur(1px);animation:cloud-drift 18s linear infinite}
-.cloud:before,.cloud:after{content:'';position:absolute;bottom:4px;border-radius:50%;background:inherit}.cloud:before{width:52px;height:52px;left:21px}.cloud:after{width:38px;height:38px;right:22px}
-.cloud-a{left:-8%;top:22%;animation-delay:-9s}.cloud-b{right:-12%;top:40%;width:95px;opacity:.72;animation-duration:24s}
-.sun-circle{position:absolute;width:min(38vw,500px);aspect-ratio:1;left:50%;top:18%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#fff8 0 42%,#fff0 70%),#fff0;box-shadow:0 0 45px 12px #fff5,0 0 110px 45px #ffd2b780;animation:glow 7s ease-in-out infinite}
-.water-glow{position:absolute;inset:57% 0 0;background:linear-gradient(180deg,#fff4,#b8d6ff77 65%,#f6b4d266);}
-.float-dot{position:absolute;border-radius:50%;background:#fff8;box-shadow:0 5px 20px #e9accc99;animation:float 5s ease-in-out infinite}
-.dot-a{width:44px;height:44px;left:10%;top:36%}
-.dot-b{width:34px;height:34px;right:12%;top:31%;animation-delay:-2s}
-.circle-companion{--companion-halo:#ee90be;position:absolute;z-index:2;right:21%;top:51%;width:82px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 45% 34%,#fff,#ffd3e7 64%,var(--companion-halo));box-shadow:0 0 24px 5px #fff9,0 0 40px 8px color-mix(in srgb,var(--companion-halo) 55%,transparent);animation:companion-swim 5.4s ease-in-out infinite}
-.circle-companion:before,.circle-companion:after{content:'';position:absolute;top:42%;width:6px;height:10px;border-radius:50%;background:#3e3860}
-.circle-companion:before{left:31%;animation:blink 6s ease-in-out infinite}
-.circle-companion:after{right:31%;animation:blink 6s ease-in-out .05s infinite}
-.circle-companion span{position:absolute;inset:-18px;border:1px solid color-mix(in srgb,var(--companion-halo) 70%,#fff);border-radius:50%;opacity:.6;animation:ripple 3s ease-out infinite}
-.circle-companion i{position:absolute;width:48px;height:12px;right:60px;top:58px;border-radius:999px;background:linear-gradient(90deg,transparent,var(--companion-halo));opacity:.5;transform:rotate(16deg)}
+/* Home world: a quiet, luminous underwater world instead of literal cloud shapes. */
+body { background: #b7d6ed; }
+.app-shell { width: 100%; max-width: none; padding: 0; }
+.home-world { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; color: #214872; background: linear-gradient(180deg, #a3cbe9 0%, #c5deed 42%, #eef1ef 72%, #f4d8e3 100%); }
+.world-header { position: relative; z-index: 5; display: flex; align-items: flex-start; justify-content: space-between; padding: 28px clamp(28px, 6vw, 84px); }
+.world-header nav { display: flex; gap: 28px; }
+.world-header button, .quiet-links button { border: 0; background: none; color: #fff; font-weight: 800; font-size: 1rem; }
+.brand { display: grid; width: max-content; text-align: left; transform: rotate(-1.5deg); transform-origin: left center; }
+.brand b { font-family: "ZCOOL KuaiLe", "Arial Rounded MT Bold", "PingFang SC", sans-serif; font-size: clamp(2.25rem, 4vw, 3.8rem); font-weight: 400; letter-spacing: .02em; line-height: 1; text-shadow: 0 3px 16px #ffffffd1, 0 0 2px #ffffff; animation: brand-bob 4.8s ease-in-out infinite; }
+.brand span { margin-top: 6px; padding-left: .25em; color: #ffffffed; font-family: ui-rounded, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: clamp(.78rem, 1.2vw, .98rem); font-weight: 700; letter-spacing: .22em; text-shadow: 0 2px 12px #ffffffa8; }
+.lodge-link { padding: 10px 18px !important; border: 1px solid #ffffffb8 !important; border-radius: 999px !important; background: #ffffff14 !important; backdrop-filter: blur(8px); }
+.aqua-scene { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: radial-gradient(ellipse at 50% 90%, #fff6 0 13%, transparent 44%), linear-gradient(115deg, #ffffff17 0 19%, transparent 20% 48%, #fff4 49% 52%, transparent 53% 100%); }
+.aqua-scene::before { content: ''; position: absolute; inset: -25% -15%; opacity: .72; background: repeating-linear-gradient(111deg, transparent 0 12vw, #ffffff27 12.5vw 14vw, transparent 14.5vw 24vw); filter: blur(13px); animation: caustic-drift 16s ease-in-out infinite alternate; }
+.aqua-scene::after { content: ''; position: absolute; right: -14vw; bottom: 3vh; width: 58vw; height: 20vw; border-radius: 50%; background: radial-gradient(ellipse, #f3b7d045 0, transparent 68%); filter: blur(22px); }
+.aqua-aura { position: absolute; width: min(76vw, 1050px); height: min(30vw, 450px); left: 50%; bottom: 5%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse, #fff8 0, #f7fbff44 42%, transparent 72%); filter: blur(10px); }
+.aqua-portal { position: absolute; width: min(37vw, 520px); aspect-ratio: 1; left: 50%; top: 15%; transform: translateX(-50%); border: 1px solid #f9ffff80; border-radius: 50%; background: radial-gradient(circle at 43% 32%, #ffffffd9 0 3%, #e9f5fbca 28%, #c7e1ef99 58%, #92bfe244 72%, transparent 74%); box-shadow: inset 0 0 58px #ffffff91, 0 0 55px 15px #f7ffff3f, 0 0 140px 42px #eec7dc30; animation: portal-breathe 8s ease-in-out infinite; }
+.aqua-portal::before { content: ''; position: absolute; inset: 8%; border: 1px solid #ffffff63; border-radius: inherit; filter: blur(.4px); }
+.aqua-portal::after { content: ''; position: absolute; inset: 18%; border-radius: inherit; background: linear-gradient(135deg, #ffffffa3, transparent 36% 69%, #ffffff40); filter: blur(6px); transform: rotate(-16deg); }
+.water-orb { position: absolute; display: block; border-radius: 50%; background: radial-gradient(circle at 32% 27%, #fffdfa 0 9%, #fff9 11%, #c6e3ee8c 40%, #8eb9db30 70%); box-shadow: inset -8px -9px 17px #78a4c629, 0 10px 30px #719bb72b; filter: blur(.15px); animation: orb-rise 9s ease-in-out infinite; }
+.orb-a { width: 76px; height: 76px; left: 8%; top: 26%; opacity: .57; animation-delay: -5s; }
+.orb-b { width: 40px; height: 40px; right: 13%; top: 32%; opacity: .72; animation-delay: -2s; }
+.orb-c { width: 24px; height: 24px; left: 18%; top: 62%; opacity: .5; animation-delay: -7s; }
+.orb-d { width: 52px; height: 52px; right: 6%; top: 66%; opacity: .35; animation-delay: -4s; }
+.orb-e { width: 17px; height: 17px; right: 32%; top: 19%; opacity: .68; animation-delay: -1s; }
+.circle-companion { --companion-halo: #e49ab5; position: absolute; z-index: 3; right: clamp(7%, 14vw, 22%); top: 47%; width: 116px; height: 104px; filter: drop-shadow(0 12px 16px #4f7ba51d); animation: companion-glide 10s cubic-bezier(.45, .05, .55, .95) infinite; }
+.companion-body { position: absolute; z-index: 2; top: 10px; left: 20px; width: 86px; aspect-ratio: 1; border: 1px solid #fff9; border-radius: 48% 52% 50% 50%; background: radial-gradient(circle at 38% 27%, #fff 0 8%, #fff1e9 19%, #ffd9e4 54%, #eaa6c0 100%); box-shadow: inset -11px -14px 18px #ba6f972c, inset 9px 7px 17px #ffffffab, 0 0 22px #fffafd, 0 0 43px #ea9ec24a; animation: companion-body-bob 2.8s ease-in-out infinite; }
+.companion-body::before { content: ''; position: absolute; z-index: -1; inset: -10px; border: 1px solid #ffffff84; border-radius: 50%; opacity: .74; animation: body-halo 4s ease-in-out infinite; }
+.companion-eye { position: absolute; z-index: 3; top: 44%; width: 6px; height: 9px; border-radius: 50%; background: #475277; box-shadow: 0 1px 1px #fff8; animation: companion-blink 5.8s ease-in-out infinite; }
+.companion-eye-left { left: 33%; }
+.companion-eye-right { right: 31%; animation-delay: .04s; }
+.companion-smile { position: absolute; left: 50%; top: 56%; width: 10px; height: 5px; border-bottom: 1.5px solid #9b6782; border-radius: 0 0 12px 12px; transform: translateX(-50%); }
+.companion-fin { position: absolute; z-index: 1; top: 52px; width: 35px; height: 25px; border: 1px solid #fff8; background: linear-gradient(135deg, #ffe9f0, #dea0be); box-shadow: inset 5px 2px 8px #fff8; opacity: .92; }
+.companion-fin-left { left: 10px; border-radius: 68% 18% 58% 44%; transform: rotate(28deg); animation: fin-left 1.65s ease-in-out infinite; transform-origin: 90% 50%; }
+.companion-fin-right { right: 6px; border-radius: 18% 68% 44% 58%; transform: rotate(-28deg); animation: fin-right 1.65s ease-in-out infinite; transform-origin: 10% 50%; }
+.companion-tail { position: absolute; z-index: 0; left: -2px; top: 43px; width: 45px; height: 32px; border-radius: 70% 16% 64% 20%; background: linear-gradient(115deg, #fbd5e3, #cb82aa); box-shadow: inset 7px 4px 9px #fff9; transform-origin: 90% 45%; animation: tail-swish .92s ease-in-out infinite alternate; }
+.companion-bubble { position: absolute; z-index: 4; border: 1px solid #fff9; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #fff, #d8eff4a6 48%, #9cc9e740); box-shadow: 0 3px 9px #7da7c833; animation: bubble-lift 3.5s ease-out infinite; }
+.bubble-one { width: 12px; height: 12px; left: -8px; top: 28px; }
+.bubble-two { width: 8px; height: 8px; left: -24px; top: 48px; animation-delay: -1.1s; }
+.bubble-three { width: 5px; height: 5px; left: 0; top: 64px; animation-delay: -2.3s; }
 .mode-dock{position:absolute;z-index:4;left:50%;bottom:15%;display:flex;gap:20px;width:min(78vw,980px);transform:translateX(-50%)}
 .mode{position:relative;flex:1;min-height:110px;padding:22px 60px 22px 28px;text-align:left;border:2px solid #fff9;border-radius:34px;background:#fffdf2;box-shadow:0 12px 28px #5e79ad35;color:#18335e;transition:.25s}
 .mode strong,.mode small{display:block}
@@ -157,16 +170,22 @@ body { background: #a8d5fb; }
 .mode-explore b{background:#f6bd40}
 .mode-relay b{background:#829cf0}
 .mode:hover,.mode:focus-visible{transform:translateY(-7px);box-shadow:0 18px 36px #5e79ad55}
-.quiet-links{position:absolute;z-index:3;bottom:7%;left:50%;display:flex;gap:24px;transform:translateX(-50%);white-space:nowrap}
+.quiet-links{position:absolute;z-index:4;bottom:7%;left:50%;display:flex;gap:24px;transform:translateX(-50%);white-space:nowrap}
 .quiet-links button{color:#5575a6}
-@keyframes glow{50%{filter:brightness(1.18);box-shadow:0 0 70px 20px #fff8,0 0 150px 65px #ffd2b799}
-}
-@keyframes float{50%{transform:translateY(-14px)}
-}
-@keyframes cloud-drift{50%{transform:translateX(180px)}}
-@keyframes companion-swim{30%{transform:translate(-9px,-11px) rotate(-4deg)}65%{transform:translate(7px,4px) rotate(3deg)}}
-@keyframes blink{48%,52%{transform:scaleY(.12)}}
-@keyframes ripple{70%{transform:scale(1.23);opacity:0}}
+@keyframes caustic-drift { to { transform: translate3d(5vw, 2vh, 0) rotate(2deg); } }
+@keyframes brand-bob { 50% { transform: translateY(-2px) rotate(.7deg); } }
+@keyframes portal-breathe { 50% { filter: brightness(1.1) saturate(1.05); box-shadow: inset 0 0 72px #ffffffad, 0 0 78px 22px #f8ffff52, 0 0 170px 55px #efbddb3b; } }
+@keyframes orb-rise { 50% { transform: translate3d(7px, -20px, 0) scale(1.05); } }
+@keyframes companion-glide { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-5deg); } 28% { transform: translate3d(-20px, -18px, 0) rotate(3deg); } 54% { transform: translate3d(-36px, 5px, 0) rotate(1deg); } 77% { transform: translate3d(-14px, 14px, 0) rotate(-6deg); } }
+@keyframes companion-body-bob { 50% { transform: translateY(-5px) rotate(1.5deg); } }
+@keyframes body-halo { 50% { transform: scale(1.09); opacity: .35; } }
+@keyframes companion-blink { 47%, 51% { transform: scaleY(.12); } }
+@keyframes tail-swish { to { transform: rotate(-26deg) scaleY(.8); } }
+@keyframes fin-left { 50% { transform: rotate(49deg) translate(1px, -2px); } }
+@keyframes fin-right { 50% { transform: rotate(-49deg) translate(-1px, -2px); } }
+@keyframes bubble-lift { 0% { transform: translate(0, 0) scale(.55); opacity: 0; } 25% { opacity: .75; } 100% { transform: translate(-26px, -58px) scale(1.2); opacity: 0; } }
+@media (max-width: 720px) { .aqua-portal { width: min(70vw, 420px); top: 19%; } .circle-companion { right: 8%; top: 47%; transform: scale(.82); transform-origin: center; } .mode-dock { width: min(92vw, 680px); gap: 10px; } .mode { min-height: 100px; padding: 18px 40px 18px 16px; border-radius: 25px; } .mode strong { font-size: 1.08rem; } .mode small { font-size: .76rem; } .quiet-links { gap: 12px; font-size: .86rem; } }
+@media (prefers-reduced-motion: reduce) { .aqua-scene *, .circle-companion, .circle-companion * { animation: none !important; } }
 .placeholder-screen{display:grid;place-content:center;gap:16px;padding:48px;text-align:center;background:linear-gradient(#b9dcf9,#fff1eb)}
 .placeholder-screen #explore-canvas{display:block;width:min(900px,calc(100vw - 64px));height:auto;border:2px solid #fff9;border-radius:28px;background:#fff9f2;box-shadow:0 18px 42px #577bab33;touch-action:none;cursor:grab}
 .placeholder-screen #explore-canvas:active{cursor:grabbing}
@@ -236,68 +255,3 @@ body { background: #a8d5fb; }
 .circle-companion{right:12%;top:45%;width:56px}
 }
 
-
-
-/* Home world: a quiet, luminous underwater world instead of literal cloud shapes. */
-body { background: #b7d6ed; }
-.app-shell { width: 100%; max-width: none; padding: 0; }
-.home-world { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; color: #214872; background: linear-gradient(180deg, #a3cbe9 0%, #c5deed 42%, #eef1ef 72%, #f4d8e3 100%); }
-.world-header { position: relative; z-index: 5; display: flex; align-items: flex-start; justify-content: space-between; padding: 28px clamp(28px, 6vw, 84px); }
-.world-header nav { display: flex; gap: 28px; }
-.world-header button, .quiet-links button { border: 0; background: none; color: #fff; font-weight: 800; font-size: 1rem; }
-.brand { display: grid; text-align: left; }
-.brand b { font-size: clamp(2rem, 4vw, 3.6rem); letter-spacing: -.14em; line-height: .85; text-shadow: 0 3px 17px #ffffffc7; }
-.brand span { font-size: 1.1rem; letter-spacing: .33em; margin-top: 14px; }
-.lodge-link { padding: 10px 18px !important; border: 1px solid #ffffffb8 !important; border-radius: 999px !important; background: #ffffff14 !important; backdrop-filter: blur(8px); }
-.aqua-scene { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: radial-gradient(ellipse at 50% 90%, #fff6 0 13%, transparent 44%), linear-gradient(115deg, #ffffff17 0 19%, transparent 20% 48%, #fff4 49% 52%, transparent 53% 100%); }
-.aqua-scene::before { content: ''; position: absolute; inset: -25% -15%; opacity: .72; background: repeating-linear-gradient(111deg, transparent 0 12vw, #ffffff27 12.5vw 14vw, transparent 14.5vw 24vw); filter: blur(13px); animation: caustic-drift 16s ease-in-out infinite alternate; }
-.aqua-scene::after { content: ''; position: absolute; right: -14vw; bottom: 3vh; width: 58vw; height: 20vw; border-radius: 50%; background: radial-gradient(ellipse, #f3b7d045 0, transparent 68%); filter: blur(22px); }
-.aqua-aura { position: absolute; width: min(76vw, 1050px); height: min(30vw, 450px); left: 50%; bottom: 5%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse, #fff8 0, #f7fbff44 42%, transparent 72%); filter: blur(10px); }
-.aqua-portal { position: absolute; width: min(37vw, 520px); aspect-ratio: 1; left: 50%; top: 15%; transform: translateX(-50%); border: 1px solid #f9ffff80; border-radius: 50%; background: radial-gradient(circle at 43% 32%, #ffffffd9 0 3%, #e9f5fbca 28%, #c7e1ef99 58%, #92bfe244 72%, transparent 74%); box-shadow: inset 0 0 58px #ffffff91, 0 0 55px 15px #f7ffff3f, 0 0 140px 42px #eec7dc30; animation: portal-breathe 8s ease-in-out infinite; }
-.aqua-portal::before { content: ''; position: absolute; inset: 8%; border: 1px solid #ffffff63; border-radius: inherit; filter: blur(.4px); }
-.aqua-portal::after { content: ''; position: absolute; inset: 18%; border-radius: inherit; background: linear-gradient(135deg, #ffffffa3, transparent 36% 69%, #ffffff40); filter: blur(6px); transform: rotate(-16deg); }
-.water-orb { position: absolute; display: block; border-radius: 50%; background: radial-gradient(circle at 32% 27%, #fffdfa 0 9%, #fff9 11%, #c6e3ee8c 40%, #8eb9db30 70%); box-shadow: inset -8px -9px 17px #78a4c629, 0 10px 30px #719bb72b; filter: blur(.15px); animation: orb-rise 9s ease-in-out infinite; }
-.orb-a { width: 76px; height: 76px; left: 8%; top: 26%; opacity: .57; animation-delay: -5s; }
-.orb-b { width: 40px; height: 40px; right: 13%; top: 32%; opacity: .72; animation-delay: -2s; }
-.orb-c { width: 24px; height: 24px; left: 18%; top: 62%; opacity: .5; animation-delay: -7s; }
-.orb-d { width: 52px; height: 52px; right: 6%; top: 66%; opacity: .35; animation-delay: -4s; }
-.orb-e { width: 17px; height: 17px; right: 32%; top: 19%; opacity: .68; animation-delay: -1s; }
-.circle-companion { --companion-halo: #e49ab5; position: absolute; z-index: 3; right: clamp(7%, 14vw, 22%); top: 47%; width: 116px; height: 104px; filter: drop-shadow(0 12px 16px #4f7ba51d); animation: companion-glide 10s cubic-bezier(.45, .05, .55, .95) infinite; }
-.companion-body { position: absolute; z-index: 2; top: 10px; left: 20px; width: 86px; aspect-ratio: 1; border: 1px solid #fff9; border-radius: 48% 52% 50% 50%; background: radial-gradient(circle at 38% 27%, #fff 0 8%, #fff1e9 19%, #ffd9e4 54%, #eaa6c0 100%); box-shadow: inset -11px -14px 18px #ba6f972c, inset 9px 7px 17px #ffffffab, 0 0 22px #fffafd, 0 0 43px #ea9ec24a; animation: companion-body-bob 2.8s ease-in-out infinite; }
-.companion-body::before { content: ''; position: absolute; z-index: -1; inset: -10px; border: 1px solid #ffffff84; border-radius: 50%; opacity: .74; animation: body-halo 4s ease-in-out infinite; }
-.companion-eye { position: absolute; z-index: 3; top: 44%; width: 6px; height: 9px; border-radius: 50%; background: #475277; box-shadow: 0 1px 1px #fff8; animation: companion-blink 5.8s ease-in-out infinite; }
-.companion-eye-left { left: 33%; }
-.companion-eye-right { right: 31%; animation-delay: .04s; }
-.companion-smile { position: absolute; left: 50%; top: 56%; width: 10px; height: 5px; border-bottom: 1.5px solid #9b6782; border-radius: 0 0 12px 12px; transform: translateX(-50%); }
-.companion-fin { position: absolute; z-index: 1; top: 52px; width: 35px; height: 25px; border: 1px solid #fff8; background: linear-gradient(135deg, #ffe9f0, #dea0be); box-shadow: inset 5px 2px 8px #fff8; opacity: .92; }
-.companion-fin-left { left: 10px; border-radius: 68% 18% 58% 44%; transform: rotate(28deg); animation: fin-left 1.65s ease-in-out infinite; transform-origin: 90% 50%; }
-.companion-fin-right { right: 6px; border-radius: 18% 68% 44% 58%; transform: rotate(-28deg); animation: fin-right 1.65s ease-in-out infinite; transform-origin: 10% 50%; }
-.companion-tail { position: absolute; z-index: 0; left: -2px; top: 43px; width: 45px; height: 32px; border-radius: 70% 16% 64% 20%; background: linear-gradient(115deg, #fbd5e3, #cb82aa); box-shadow: inset 7px 4px 9px #fff9; transform-origin: 90% 45%; animation: tail-swish .92s ease-in-out infinite alternate; }
-.companion-bubble { position: absolute; z-index: 4; border: 1px solid #fff9; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #fff, #d8eff4a6 48%, #9cc9e740); box-shadow: 0 3px 9px #7da7c833; animation: bubble-lift 3.5s ease-out infinite; }
-.bubble-one { width: 12px; height: 12px; left: -8px; top: 28px; }
-.bubble-two { width: 8px; height: 8px; left: -24px; top: 48px; animation-delay: -1.1s; }
-.bubble-three { width: 5px; height: 5px; left: 0; top: 64px; animation-delay: -2.3s; }
-.mode-dock{position:absolute;z-index:4;left:50%;bottom:15%;display:flex;gap:20px;width:min(78vw,980px);transform:translateX(-50%)}
-.mode{position:relative;flex:1;min-height:110px;padding:22px 60px 22px 28px;text-align:left;border:2px solid #fff9;border-radius:34px;background:#fffdf2;box-shadow:0 12px 28px #5e79ad35;color:#18335e;transition:.25s}
-.mode strong,.mode small{display:block}
-.mode strong{font-size:1.55rem}
-.mode small{margin-top:8px;color:#58719d}
-.mode b{position:absolute;right:20px;top:50%;display:grid;width:34px;aspect-ratio:1;place-items:center;border-radius:50%;transform:translateY(-50%);color:#fff;background:#fa7186}
-.mode-explore b{background:#f6bd40}
-.mode-relay b{background:#829cf0}
-.mode:hover,.mode:focus-visible{transform:translateY(-7px);box-shadow:0 18px 36px #5e79ad55}
-.quiet-links{position:absolute;z-index:4;bottom:7%;left:50%;display:flex;gap:24px;transform:translateX(-50%);white-space:nowrap}
-.quiet-links button{color:#5575a6}
-@keyframes caustic-drift { to { transform: translate3d(5vw, 2vh, 0) rotate(2deg); } }
-@keyframes portal-breathe { 50% { filter: brightness(1.1) saturate(1.05); box-shadow: inset 0 0 72px #ffffffad, 0 0 78px 22px #f8ffff52, 0 0 170px 55px #efbddb3b; } }
-@keyframes orb-rise { 50% { transform: translate3d(7px, -20px, 0) scale(1.05); } }
-@keyframes companion-glide { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-5deg); } 28% { transform: translate3d(-20px, -18px, 0) rotate(3deg); } 54% { transform: translate3d(-36px, 5px, 0) rotate(1deg); } 77% { transform: translate3d(-14px, 14px, 0) rotate(-6deg); } }
-@keyframes companion-body-bob { 50% { transform: translateY(-5px) rotate(1.5deg); } }
-@keyframes body-halo { 50% { transform: scale(1.09); opacity: .35; } }
-@keyframes companion-blink { 47%, 51% { transform: scaleY(.12); } }
-@keyframes tail-swish { to { transform: rotate(-26deg) scaleY(.8); } }
-@keyframes fin-left { 50% { transform: rotate(49deg) translate(1px, -2px); } }
-@keyframes fin-right { 50% { transform: rotate(-49deg) translate(-1px, -2px); } }
-@keyframes bubble-lift { 0% { transform: translate(0, 0) scale(.55); opacity: 0; } 25% { opacity: .75; } 100% { transform: translate(-26px, -58px) scale(1.2); opacity: 0; } }
-@media (max-width: 720px) { .aqua-portal { width: min(70vw, 420px); top: 19%; } .circle-companion { right: 8%; top: 47%; transform: scale(.82); transform-origin: center; } .mode-dock { width: min(92vw, 680px); gap: 10px; } .mode { min-height: 100px; padding: 18px 40px 18px 16px; border-radius: 25px; } .mode strong { font-size: 1.08rem; } .mode small { font-size: .76rem; } .quiet-links { gap: 12px; font-size: .86rem; } }
-@media (prefers-reduced-motion: reduce) { .aqua-scene *, .circle-companion, .circle-companion * { animation: none !important; } }
